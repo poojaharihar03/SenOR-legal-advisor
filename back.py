@@ -21,7 +21,7 @@ import toml
 
 hf_token = os.getenv("HUGGINGFACE_TOKEN")
 print(hf_token)
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
+#os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
 # if hf_token is None:
 #     raise ValueError("Hugging Face token is not set. Please set it in Streamlit settings.")
 # else:
