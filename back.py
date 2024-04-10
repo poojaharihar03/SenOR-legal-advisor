@@ -39,7 +39,7 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=20
 loader =  PyPDFDirectoryLoader(pdf_file_path)
 docs = loader.load()
 
-db = Chroma.from_documents(docs, embeddings)
+db = FAISS.from_documents(docs, embeddings)
 prompt = hub.pull("rlm/rag-prompt", api_url="https://api.hub.langchain.com")
 
 def model(user_query, max_length, temp):
