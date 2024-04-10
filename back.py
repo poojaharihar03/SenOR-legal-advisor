@@ -28,7 +28,7 @@ hf_token = os.getenv("HUGGINGFACE_TOKEN")
 
 
 # csv_file_path = 'rights.csv'
-pdf_file_path='poojaharihar03/SenOR-legal-advisor/tree/main/dataset'
+pdf_file_path='https://github.com/poojaharihar03/SenOR-legal-advisor/tree/main/dataset'
 
 embeddings = HuggingFaceInferenceAPIEmbeddings(
     api_key = hf_token,
