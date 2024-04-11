@@ -152,4 +152,5 @@ yarl==1.9.4
 zipp==3.18.1
 bs4
 gtts
+faiss-gpu
 pydub
