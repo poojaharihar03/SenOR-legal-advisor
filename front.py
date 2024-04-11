@@ -1,7 +1,7 @@
 import streamlit as st
 from back import *
 #import back
-
+st.set_page_config(page_title="💬👨🏻‍⚖️ SenOR Legal Advisor")
 st.title("🤖 SenOR ")
 with st.sidebar:
     st.markdown("<h1 style='text-align:center;font-family:Georgia;font-size:26px;'>🧑‍⚖️ SenOR Legal Advisor </h1>",
