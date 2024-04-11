@@ -67,11 +67,4 @@ def text_speech(text):
 
     # Convert speech to base64 encoding
     speech_base64 = base64.b64encode(speech_bytes.read()).decode('utf-8')
-
     return speech_base64
-# def text_speech(text):
-#     # Initialize the Text-to-Speech engine
-#     engine = pyttsx3.init()
-#     engine.setProperty('rate', 150)  # You can adjust the speech rate if needed
-#     engine.say(text)
-#     engine.runAndWait()
