@@ -19,13 +19,14 @@ from pydub import AudioSegment
 from pydub.playback import play
 import toml
 
-HUGGINGFACEHUB_API_TOKEN = st.secrets['HUGGINGFACEHUB_API_TOKEN']
+hf_token = os.getenv("HUGGINGFACE_TOKEN")
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
 
 # csv_file_path = 'rights.csv'
 pdf_file_path='https://github.com/poojaharihar03/SenOR-legal-advisor/tree/main/dataset'
 
 embeddings = HuggingFaceInferenceAPIEmbeddings(
-    api_key = HUGGINGFACEHUB_API_TOKEN,
+    api_key = hf_token,
     model_name = "sentence-transformers/all-MiniLM-L6-v2"
 )
 
