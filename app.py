@@ -18,13 +18,8 @@ import platform
 from pydub import AudioSegment
 from pydub.playback import play
 import toml
-
-hf_token = os.getenv("HUGGINGFACE_TOKEN")
-# Set Hugging Face Hub API token as environment variable
+hf_token = st.secrets["HUGGINGFACE_TOKEN"]["token"]
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
-
-# hf_token = os.getenv("HUGGINGFACE_TOKEN")
-# os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
 
 # csv_file_path = 'rights.csv'
 pdf_file_path='https://github.com/poojaharihar03/SenOR-legal-advisor/tree/main/dataset'
