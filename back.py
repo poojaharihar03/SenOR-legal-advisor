@@ -36,17 +36,7 @@ loader =  PyPDFDirectoryLoader(pdf_file_path)
 docs = loader.load()
 
 db = FAISS.from_documents(docs, embeddings)
-prompt_template = """
-            You are a trained bot to guide people about Indian Law. You will answer user's query with your knowledge and the context provided. 
-            If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.
-            Do not say thank you and tell you are an AI Assistant and be open about everything.
-            Use the following pieces of context to answer the users question.
-            Context: {context}
-            Question: {question}
-            Only return the helpful answer below and nothing else.
-            Helpful answer:
-             Only return the helpful answer below and nothing else.
-            """
+prompt = hub.pull("rlm/rag-prompt", api_url="https://api.hub.langchain.com")
 
 def model(user_query, max_length, temp):
     repo_id = 'mistralai/Mixtral-8x7B-Instruct-v0.1'
@@ -57,9 +47,15 @@ def model(user_query, max_length, temp):
                                      retriever=db.as_retriever(k=2),
                                      return_source_documents=True,
                                      verbose=True,
-                                     chain_type_kwargs={"prompt": prompt_template})
+                                     chain_type_kwargs={"prompt": prompt})
+    # return qa(user_query)["result"]
     response = qa(user_query)["result"]
-    return response
+    answer_start = response.find("Answer:")
+    if answer_start != -1:
+        answer = response[answer_start + len("Answer:"):].strip()
+        return answer
+    else:
+        return "Sorry, I couldn't find the answer."
         
 def text_speech(text):
     tts = gTTS(text=text, lang='en')
@@ -73,3 +69,9 @@ def text_speech(text):
     speech_base64 = base64.b64encode(speech_bytes.read()).decode('utf-8')
 
     return speech_base64
+# def text_speech(text):
+#     # Initialize the Text-to-Speech engine
+#     engine = pyttsx3.init()
+#     engine.setProperty('rate', 150)  # You can adjust the speech rate if needed
+#     engine.say(text)
+#     engine.runAndWait()
