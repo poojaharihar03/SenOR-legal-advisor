@@ -1,6 +1,6 @@
 import streamlit as st
 from back import *
-# import back
+#import back
 
 st.title("🤖 SenOR ")
 with st.sidebar:
@@ -60,9 +60,11 @@ if st.session_state.messages[-1]["role"] != "assistant":
     message = {"role": "assistant", "content": full_response}
     st.session_state.messages.append(message)
 
-
-# if st.checkbox("Convert to speech"):
 if st.button("Convert to Speech"):
-        if st.session_state.messages[-1]["role"] == "assistant":
-            text_speech(st.session_state.messages[-1]["content"])
+    if st.session_state.messages[-1]["role"] == "assistant":
+        audio_base64 = text_speech(st.session_state.messages[-1]["content"])
+        st.audio(base64.b64decode(audio_base64), format='audio/mp3')
 
+# if st.button("Convert to Speech"):
+#         if st.session_state.messages[-1]["role"] == "assistant":
+#             text_speech(st.session_state.messages[-1]["content"])
