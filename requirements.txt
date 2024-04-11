@@ -154,3 +154,4 @@ bs4
 gtts
 faiss-gpu
 pydub
+pypdf
