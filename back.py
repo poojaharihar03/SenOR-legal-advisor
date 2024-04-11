@@ -18,17 +18,12 @@ import platform
 from pydub import AudioSegment
 from pydub.playback import play
 import toml
-
-hf_token = os.getenv("HUGGINGFACE_TOKEN")
+hf_token = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
 
-# if hf_token is None:
-#     raise ValueError("Hugging Face token is not set. Please set it in Streamlit settings.")
-# else:
-#     # Set Hugging Face token as environment variable
+# hf_token = os.getenv("HUGGINGFACE_TOKEN")
+# os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
 
-
-# csv_file_path = 'rights.csv'
 pdf_file_path='https://github.com/poojaharihar03/SenOR-legal-advisor/tree/main/dataset'
 
 embeddings = HuggingFaceInferenceAPIEmbeddings(
