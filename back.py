@@ -1,4 +1,5 @@
 import os
+import io
 import streamlit as st
 from langchain.chains import RetrievalQA
 from langchain.text_splitter import CharacterTextSplitter
@@ -17,15 +18,13 @@ import base64
 import platform
 from pydub import AudioSegment
 from pydub.playback import play
-import toml
-# hf_token = st.secrets("token")
+import pyttsx3
+
+
 hf_token = st.secrets["HUGGINGFACE_TOKEN"]["token"]
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
 
-# hf_token = os.getenv("HUGGINGFACE_TOKEN")
-# os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
-
-pdf_file_path='https://github.com/poojaharihar03/SenOR-legal-advisor/tree/main/dataset'
+pdf_file_path='dataset'
 
 embeddings = HuggingFaceInferenceAPIEmbeddings(
     api_key = hf_token,
@@ -57,30 +56,16 @@ def model(user_query, max_length, temp):
         return answer
     else:
         return "Sorry, I couldn't find the answer."
-
+        
 def text_speech(text):
-    # Save the generated text to an audio file
     tts = gTTS(text=text, lang='en')
-    audio_file_path = "generated_audio.mp3"
-    tts.save(audio_file_path)
-    
-    # Play the audio file
-    play_audio(audio_file_path)
 
-    # Remove the audio file after playing (optional)
-    os.remove(audio_file_path)
+    # Save speech to a BytesIO object
+    speech_bytes = io.BytesIO()
+    tts.write_to_fp(speech_bytes)
+    speech_bytes.seek(0)
 
-def play_audio(audio_file_path):
-    # Check the platform to determine the appropriate command for playing audio
-    if platform.system() == "Darwin":
-        os.system("afplay " + audio_file_path)
-    elif platform.system() == "Linux":
-        os.system("aplay " + audio_file_path)
-    elif platform.system() == "Windows":
-        os.system("start " + audio_file_path)
-    else:
-        st.warning("Unsupported platform for text-to-speech")
+    # Convert speech to base64 encoding
+    speech_base64 = base64.b64encode(speech_bytes.read()).decode('utf-8')
 
-
-def stop_audio():
-    play.stop()
+    return speech_base64
