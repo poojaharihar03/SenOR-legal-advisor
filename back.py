@@ -18,7 +18,8 @@ import platform
 from pydub import AudioSegment
 from pydub.playback import play
 import toml
-hf_token = st.secrets("token")
+# hf_token = st.secrets("token")
+hf_token = st.secrets["HUGGINGFACE_TOKEN"]["token"]
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
 
 # hf_token = os.getenv("HUGGINGFACE_TOKEN")
