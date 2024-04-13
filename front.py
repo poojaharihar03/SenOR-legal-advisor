@@ -6,7 +6,7 @@ st.title("🤖 SenOR ")
 with st.sidebar:
     st.markdown("<h1 style='text-align:center;font-family:Georgia;font-size:26px;'>🧑‍⚖️ SenOR Legal Advisor </h1>",
                 unsafe_allow_html=True)
-    st.markdown("<h7 style='text-align:left;font-size:20px;'>This app is a smart legal chatbot that is integrated into an easy-to-use platform. This would give lawyers "
+    st.markdown("<h7 style='text-align: justify;font-size:20px;'>This app is a smart legal chatbot that is integrated into an easy-to-use platform. This would give lawyers "
                 "instant access to legal information of Women’s Legal Rights and remove the need for laborious manual research in books or regulations using the power "
                 "of Large Language Models</h7>", unsafe_allow_html=True)
     st.markdown("-------")
