@@ -64,11 +64,13 @@ if st.button("Convert to Speech"):
     if st.session_state.messages[-1]["role"] == "assistant":
         audio_base64 = text_speech(st.session_state.messages[-1]["content"])
         st.audio(base64.b64decode(audio_base64), format='audio/mp3')
-    <div style="background-color: #FFFF8F	; padding: 10px; border-radius: 5px;">
-        <p style="color: black;">⚠️Senor can make mistakes. Information updated only till 2023. Please consider checking important information.</p>
-    </div>
-""", unsafe_allow_html=True)
-
 # if st.button("Convert to Speech"):
 #         if st.session_state.messages[-1]["role"] == "assistant":
 #             text_speech(st.session_state.messages[-1]["content"])
+
+
+<div style="background-color: #FFFF8F	; padding: 10px; border-radius: 5px;">
+    <p style="color: black;">⚠️Senor can make mistakes. Information updated only till 2023. Please consider checking important information.</p>
+</div>
+""", unsafe_allow_html=True)
+
