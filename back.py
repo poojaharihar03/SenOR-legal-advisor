@@ -35,7 +35,7 @@ new_db = FAISS.load_local("merge",embeddings, allow_dangerous_deserialization=Tr
 prompt = hub.pull("rlm/rag-prompt", api_url="https://api.hub.langchain.com")
 
 def model(user_query, max_length, temp):
-    repo_id = 'meta-llama/Meta-Llama-3-8B-Instruct'
+    repo_id = 'mistralai/Mixtral-8x7B-Instruct-v0.1'
     llm = HuggingFaceHub(
         repo_id=repo_id, model_kwargs={"max_length": max_length, "temperature": temp})
     qa = RetrievalQA.from_chain_type(llm=llm,
