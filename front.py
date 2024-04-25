@@ -20,8 +20,8 @@ with st.sidebar:
     st.markdown("-------")
     st.markdown("<h2 style='text-align:center;font-family:Georgia;font-size:20px;'>Advanced Features</h1>",
                 unsafe_allow_html=True)
-    max_length = st.slider("Token Max Length", min_value=512, max_value=1024, value=512, step=128)
-    temp = st.slider("Temperature", min_value=0.1, max_value=1.0, value=0.1, step=0.1)
+    max_length = st.slider("Token Max Length", min_value=512, max_value=4096, value=512, step=128)
+    temp = st.slider("Temperature", min_value=0.1, max_value=1.0, value=0.5, step=0.1)
 
 if "messages" not in st.session_state.keys():
     st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
