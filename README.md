@@ -1,6 +1,6 @@
 # SenOR-legal-advisor
 
-Senior Legal Advisor is an AI-powered chatbot designed to provide immediate and reliable legal assistance to users. This project aims to revolutionize the way individuals access legal information and support by leveraging advanced natural language processing capabilities.
+SenOR Legal Advisor is an AI-powered chatbot designed to provide immediate and reliable legal assistance to users. This project aims to revolutionize the way individuals access legal information and support by leveraging advanced natural language processing capabilities.
 
 ## Features
 
