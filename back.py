@@ -51,7 +51,7 @@ def model(user_query, max_length, temp):
     response = qa(user_query)["result"]
     
     def model(user_query, max_length, temp):
-    repo_id = ''
+    repo_id = 'meta-llama/Meta-Llama-3-8B-Instruct'
     llm = HuggingFaceHub(
         repo_id=repo_id, model_kwargs={"max_length": max_length, "temperature": temp})
     qa = RetrievalQA.from_chain_type(llm=llm,
