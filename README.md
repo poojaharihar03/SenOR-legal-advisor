@@ -53,7 +53,7 @@ Start the server
 ```
 
 # Screenshots
-![image](https://github.com/poojaharihar03/SenOR-legal-advisor/assets/88924201/4a53e51e-d412-44d1-8854-bb4912659b86)
+![image](https://github.com/poojaharihar03/SenOR-legal-advisor/assets/88924201/62ffabbf-b2ca-4240-9fa5-e8dce15d4306)
 
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
