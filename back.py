@@ -51,15 +51,15 @@ def model(user_query, max_length, temp):
     response = qa(user_query)["result"]
     
     answer_start = response.find("Answer:")
-if answer_start != -1:
-    assistant_index = response.find("assistant:")
-    if assistant_index != -1:
-        response = response[:assistant_index].strip()
-    answer = response[answer_start + len("Answer:"):].strip()
-    last_period_index = answer.rfind('.')
-    if last_period_index != -1:
-        answer = answer[:last_period_index + 1]
-    return answer
+    if answer_start != -1:
+        assistant_index = response.find("assistant:")
+        if assistant_index != -1:
+            response = response[:assistant_index].strip()
+        answer = response[answer_start + len("Answer:"):].strip()
+        last_period_index = answer.rfind('.')
+        if last_period_index != -1:
+            answer = answer[:last_period_index + 1]
+        return answer
 
 
         
