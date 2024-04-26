@@ -50,16 +50,29 @@ def model(user_query, max_length, temp):
     # return qa(user_query)["result"]
     response = qa(user_query)["result"]
     
+    def model(user_query, max_length, temp):
+    repo_id = ''
+    llm = HuggingFaceHub(
+        repo_id=repo_id, model_kwargs={"max_length": max_length, "temperature": temp})
+    qa = RetrievalQA.from_chain_type(llm=llm,
+                                     chain_type="stuff",
+                                     retriever=new_db.as_retriever(k=2),
+                                     return_source_documents=True,
+                                     verbose=True,
+                                     chain_type_kwargs={"prompt": prompt})
+    # return qa(user_query)["result"]
+    response = qa(user_query)["result"]
+    
     answer_start = response.find("Answer:")
-    if answer_start != -1:
-        assistant_index = response.find("assistant:")
-        if assistant_index != -1:
-            response = response[:assistant_index].strip()
-        answer = response[answer_start + len("Answer:"):].strip()
-        last_period_index = answer.rfind('.')
-        if last_period_index != -1:
-            answer = answer[:last_period_index + 1]
-        return answer
+if answer_start != -1:
+    assistant_index = response.find("assistant:")
+    if assistant_index != -1:
+        response = response[:assistant_index].strip()
+    answer = response[answer_start + len("Answer:"):].strip()
+    last_period_index = answer.rfind('.')
+    if last_period_index != -1:
+        answer = answer[:last_period_index + 1]
+    return answer
 
 
         
