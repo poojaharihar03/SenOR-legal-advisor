@@ -14,8 +14,7 @@ with st.sidebar:
 
     st.markdown(" - Users can adjust token length to control the length of generated responses, allowing for customization based on specific requirements or constraints.")
     st.markdown(" - Users can adjust the temp to control response randomness. Higher values (e.g., 0.5) produce diverse but less focused responses, while low values (e.g., 0.1) result in more focused but less varied answers.")
-    st.markdown("- users can now use text to speech")
-    st.markdown("<h2 style='font-family:Georgia;font-size:20px;'>Press enter to stop the audio</h1>", unsafe_allow_html=True)
+    st.markdown("- Users can now use text to speech")
 
     st.markdown("-------")
     st.markdown("<h2 style='text-align:center;font-family:Georgia;font-size:20px;'>Advanced Features</h1>",
