@@ -25,7 +25,7 @@ import pyttsx3
 hf_token = st.secrets["HUGGINGFACE_TOKEN"]["token"]
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
 
-pdf_file_path='merge'
+pdf_file_path='dataset'
 
 embeddings = HuggingFaceInferenceAPIEmbeddings(
     api_key = hf_token,
