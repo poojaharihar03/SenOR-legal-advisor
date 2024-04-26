@@ -25,7 +25,7 @@ import pyttsx3
 hf_token = st.secrets["HUGGINGFACE_TOKEN"]["token"]
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
 
-pdf_file_path='dataset'
+pdf_file_path='merge'
 
 embeddings = HuggingFaceInferenceAPIEmbeddings(
     api_key = hf_token,
@@ -48,10 +48,13 @@ def model(user_query, max_length, temp):
     response = qa(user_query)["result"]
     answer_start = response.find("Answer:")
     if answer_start != -1:
-        answer = response[answer_start + len("Answer:"):].strip()
+        answer = response[answer_start + len("Answer:"):].strip() 
+        
+        # Remove incomplete sentences after the last period
+        last_period_index = answer.rfind('.')
+        if last_period_index != -1:
+            answer = answer[:last_period_index + 1]  # till last period
         return answer
-    else:
-        return "Sorry, I couldn't find the answer."
         
 def text_speech(text):
     tts = gTTS(text=text, lang='en')
