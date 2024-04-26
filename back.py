@@ -38,7 +38,7 @@ new_db = FAISS.load_local("merge",embeddings, allow_dangerous_deserialization=Tr
 prompt = hub.pull("rlm/rag-prompt", api_url="https://api.hub.langchain.com")
 
 def model(user_query, max_length, temp):
-    repo_id = 'meta-llama/Meta-Llama-3-8B-Instruct'
+    repo_id = ''
     llm = HuggingFaceHub(
         repo_id=repo_id, model_kwargs={"max_length": max_length, "temperature": temp})
     qa = RetrievalQA.from_chain_type(llm=llm,
@@ -51,17 +51,15 @@ def model(user_query, max_length, temp):
     response = qa(user_query)["result"]
     
     answer_start = response.find("Answer:")
-    if answer_start != -1:
-        answer = response[answer_start + len("Answer:"):].strip()
-        last_period_index = answer.rfind('.')
-        if last_period_index != -1:
-            answer = answer[:last_period_index + 1]
-        return answer
-    else:
-        assistant_index = response.find("assistant:")
-        if assistant_index != -1:
-            response = response[:assistant_index].strip()
-        return response
+if answer_start != -1:
+    assistant_index = response.find("assistant:")
+    if assistant_index != -1:
+        response = response[:assistant_index].strip()
+    answer = response[answer_start + len("Answer:"):].strip()
+    last_period_index = answer.rfind('.')
+    if last_period_index != -1:
+        answer = answer[:last_period_index + 1]
+    return answer
 
 
         
